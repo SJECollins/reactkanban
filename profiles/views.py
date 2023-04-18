@@ -1,34 +1,26 @@
-from django.http import Http404
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import generics
+from reactkanban.permissions import IsOwnerOrReadOnly, IsLeadOrReadOnly
 from .models import Team, Profile
+from .serializers import TeamSerializer, ProfileSerializer
 
 
-class TeamList(APIView):
-    def get(self, request):
-        teams = Team.objects.all()
-        return response(teams)
+class TeamList(generics.ListAPIView):
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
 
 
-class TeamDetail(APIView):
-    def get_object(self, pk):
-        try:
-            team = Team.objects.get(pk=pk)
-            return team
-        except Team.DoesNotExist:
-            raise Http404
+class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsLeadOrReadOnly]
+    queryset = Team.objects.all()
+    serializer_class = TeamSerializer
 
 
-class ProfileList(APIView):
-    def get(self, request):
-        profiles = Profile.objects.all()
-        return Response(profiles)
+class ProfileList(generics.ListAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
 
-class ProfileDetail(APIView):
-    def get_object(self, pk):
-        try:
-            profile = Profile.objects.get(pk=pk)
-            return profile
-        except Profile.DoesNotExist:
-            raise Http404
+class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer

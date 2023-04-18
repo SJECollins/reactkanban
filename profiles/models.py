@@ -12,6 +12,7 @@ ROLES = [
 class Team(models.Model):
     name = models.CharField(max_length=240)
     description = models.TextField()
+    lead = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     class Meta:
         ordering = ['name']
