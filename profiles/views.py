@@ -10,6 +10,15 @@ class TeamList(APIView):
         return response(teams)
 
 
+class TeamDetail(APIView):
+    def get_object(self, pk):
+        try:
+            team = Team.objects.get(pk=pk)
+            return team
+        except Team.DoesNotExist:
+            raise Http404
+
+
 class ProfileList(APIView):
     def get(self, request):
         profiles = Profile.objects.all()
