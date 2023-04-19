@@ -20,6 +20,15 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
+    def update_profile(self):
+        profile = self.lead.profile
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        profile = Profile.objects.filter(owner=self.lead)
+        profile.update(team=self.id)
+        profile.update(role='Team Lead')
+
 
 class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -35,7 +44,10 @@ class Profile(models.Model):
         ordering = ['-joined']
 
     def __str__(self):
-        return self.owner
+        return self.owner.username
+
+    def get_full_name(self):
+        return (self.first_name).capitalize() + " " + (self.last_name).capitalize()
 
 
 def create_profile(sender, instance, created, **kwargs):

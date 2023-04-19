@@ -19,6 +19,7 @@ class Project(models.Model):
     name = models.CharField(max_length=120)
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True)
+    description = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField()
 

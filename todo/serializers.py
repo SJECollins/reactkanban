@@ -7,7 +7,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     created = serializers.SerializerMethodField()
-    deadline = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -16,13 +15,11 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_created(self, obj):
         return naturaltime(obj.created)
 
-    def get_deadline(self, obj):
-        return naturaltime(obj.deadline)
-
     class Meta:
         model = Project
         fields = [
             'id', 'owner', 'is_owner', 'team', 'created', 'deadline',
+            'name', 'description'
         ]
 
 
@@ -31,7 +28,6 @@ class TaskSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     added = serializers.SerializerMethodField()
     updated = serializers.SerializerMethodField()
-    due = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -42,9 +38,6 @@ class TaskSerializer(serializers.ModelSerializer):
 
     def get_updated(self, obj):
         return naturaltime(obj.updated)
-
-    def get_due(self, obj):
-        return naturaltime(obj.due)
 
     class Meta:
         model = Task

@@ -79,6 +79,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'reactkanban.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [(
+        'rest_framework.authentication.SessionAuthentication'
+    )],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%d %b %Y',
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

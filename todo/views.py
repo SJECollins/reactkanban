@@ -1,10 +1,11 @@
 from rest_framework import generics, permissions
 from reactkanban.permissions import IsOwnerOrReadOnly
 from .models import Project, Task
-from .serializers import ProjectSerializer, TaskSerializer, TaskDetailSerializer
+from .serializers import ProjectSerializer, TaskSerializer
 
 
 class ProjectList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
 
@@ -19,6 +20,7 @@ class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class TaskList(generics.ListCreateAPIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = TaskSerializer
     queryset = Task.objects.all()
 
@@ -28,5 +30,5 @@ class TaskList(generics.ListCreateAPIView):
 
 class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
-    serializer_class = TaskDetailSerializer
+    serializer_class = TaskSerializer
     queryset = Task.objects.all()
