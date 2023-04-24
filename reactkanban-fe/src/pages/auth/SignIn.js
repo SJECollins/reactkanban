@@ -19,6 +19,7 @@ const SignIn = () => {
   
     const history = useHistory();
     const handleSubmit = async (event) => {
+      console.log(signInData)
       event.preventDefault();
   
       try {
@@ -34,8 +35,9 @@ const SignIn = () => {
     const handleChange = (event) => {
       setSignInData({
         ...signInData,
-        [event.target.name]: event.target.value,
+        [event.target.name]: event.target.value,  
       });
+      console.log(signInData)
     };
 
   return (
