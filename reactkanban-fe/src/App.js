@@ -3,6 +3,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import SignIn from './pages/auth/SignIn';
 import { useCurrentUser } from './contexts/CurrentUserContext';
+import ProjectsPage from './pages/projects/ProjectsPage';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -13,7 +14,7 @@ function App() {
       <NavBar />
       <div>
         <Switch>
-          <Route exact path="/" />
+          <Route exact path="/" render={() => <ProjectsPage />} />
           <Route exact path="/signin" render={() => <SignIn />} />
         </Switch>
       </div>
