@@ -5,6 +5,7 @@ from .models import Project, Task
 
 class ProjectSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    team_name = serializers.ReadOnlyField(source='team.name')
     is_owner = serializers.SerializerMethodField()
     created = serializers.SerializerMethodField()
 
@@ -18,7 +19,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = [
-            'id', 'owner', 'is_owner', 'team', 'created', 'deadline',
+            'id', 'owner', 'is_owner', 'team', 'team_name', 'created', 'deadline',
             'name', 'description'
         ]
 

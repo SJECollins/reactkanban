@@ -4,6 +4,9 @@ import NavBar from './components/NavBar';
 import SignIn from './pages/auth/SignIn';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import ProjectsPage from './pages/projects/ProjectsPage';
+import ProjectPage from './pages/projects/ProjectPage';
+import Task from './pages/tasks/Task';
+import SignUp from './pages/auth/SignUp';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -16,6 +19,10 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <ProjectsPage />} />
           <Route exact path="/signin" render={() => <SignIn />} />
+          <Route exact path="/signup" render={() => <SignUp />} />
+          <Route exact path="/projects" render={() => <ProjectsPage />} />
+          <Route exact path="/projects/:id" render={() => <ProjectPage />} />
+          <Route exact path="/task/:id" render={() => <Task />} />
         </Switch>
       </div>
     </div>

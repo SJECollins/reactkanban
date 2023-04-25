@@ -5,7 +5,7 @@ from .serializers import ProjectSerializer, TaskSerializer
 
 
 class ProjectList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
 

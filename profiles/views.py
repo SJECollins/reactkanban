@@ -20,6 +20,7 @@ class TeamDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ProfileList(generics.ListAPIView):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 

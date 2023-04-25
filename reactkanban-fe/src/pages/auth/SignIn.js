@@ -4,10 +4,11 @@ import styles from '../../styles/Form.module.css'
 import axios from 'axios'
 import { setTokenTimestamp } from '../../utils/utils'
 import { useHistory } from 'react-router-dom'
+import { useRedirect } from '../../hooks/useRedirect'
 
 const SignIn = () => {
     const setCurrentUser = useSetCurrentUser();
-    // useRedirect("loggedIn");
+    useRedirect("loggedIn")
   
     const [signInData, setSignInData] = useState({
       username: "",
@@ -28,6 +29,7 @@ const SignIn = () => {
         setTokenTimestamp(data);
         history.goBack();
       } catch (err) {
+        console.log(err)
         setErrors(err.response?.data);
       }
     };
@@ -64,7 +66,7 @@ const SignIn = () => {
                     <input
                         className={styles.FormInput}
                         placeholder="Enter password"
-                        type="text"
+                        type="password"
                         name="password"
                         value={password}
                         onChange={handleChange}
@@ -72,6 +74,7 @@ const SignIn = () => {
                 {errors.password?.map((message, index) => (
                     <p key={index}>
                         {message}
+                        fuck you
                     </p>
                 ))}
             </fieldset>

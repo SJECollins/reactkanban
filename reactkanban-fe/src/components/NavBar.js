@@ -26,7 +26,7 @@ const NavBar = () => {
             <ul>
                 <NavLink to="/" className={styles.NavLeft}>Home</NavLink>
                 <NavLink to="/" className={styles.NavLeft}>Teams</NavLink>
-                <NavLink to="/" className={styles.NavLeft}>Projects</NavLink>
+                <NavLink to="/projects" className={styles.NavLeft}>Projects</NavLink>
             </ul>
         </div>
         <div>
@@ -52,7 +52,7 @@ const NavBar = () => {
                     >Sign In</NavLink>
                 <NavLink
                     className={styles.NavRight}
-                    to="/"
+                    to="/signup"
                     >Sign Up</NavLink>
             </div>
         </>)}

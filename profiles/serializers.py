@@ -22,7 +22,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
     joined = serializers.SerializerMethodField()
-    team = serializers.SerializerMethodField()
+    team_name = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -31,12 +31,15 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_joined(self, obj):
         return naturaltime(obj.joined)
 
-    def get_team(self, obj):
-        return obj.team.name
+    def get_team_name(self, obj):
+        if obj.team is not None:
+            return obj.team.name
+        else:
+            return "No team"
 
     class Meta:
         model = Profile
         fields = [
             'id', 'owner', 'joined', 'first_name', 'last_name', 'dob',
-            'team', 'role', 'bio', 'is_owner',
+            'team', 'team_name', 'role', 'bio', 'is_owner',
         ]
