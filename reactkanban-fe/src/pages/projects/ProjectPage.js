@@ -11,6 +11,7 @@ const ProjectPage = () => {
     const { id } = useParams()
 
     const currentUser = useCurrentUser()
+    const is_owner = currentUser?.username === owner
 
     useEffect(() => {
         const handleMount = async () => {

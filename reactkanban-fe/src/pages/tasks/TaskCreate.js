@@ -3,8 +3,7 @@ import styles from '../../styles/Form.module.css'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults'
 
-const TaskCreate = (props) => {
-    const { project, profile_id } = props
+const TaskCreate = ({ project }) => {
     const [ errors, setErrors ] = useState({})
     const [ taskData, setTaskData ] = useState({
         name: "",
@@ -38,7 +37,7 @@ const TaskCreate = (props) => {
                 formData,
                 project
             })
-            history.push(`/task/${data.id}`)
+            history.push(`/project/${project.id}`)
         } catch (err) {
             console.log(err)
             if (err.response?.status !== 401) {
