@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const ProjectsPage = () => {
     const [ projects, setProjects ] = useState({ results: [] })
@@ -25,10 +26,14 @@ const ProjectsPage = () => {
             <div>
                 <h1>Current Projects</h1>
                 {projects.results.map((project) => (
+                    <div key={project.id}>
                     <Project
-                        key={project.id}
                         {...project}
                         setProjects={setProjects} />
+                        <Link to={`/project/${project.id}`}>
+                            View Project
+                        </Link>
+                    </div>
                 ))}
             </div>
         ) : (

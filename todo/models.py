@@ -3,15 +3,15 @@ from django.contrib.auth.models import User
 from profiles.models import Team
 
 PRIORITY = [
-    (0, 'Low'),
-    (1, 'Normal'),
-    (2, 'High')
+    ('Low', 'Low'),
+    ('Normal', 'Normal'),
+    ('High', 'High')
 ]
 
 STATUS = [
-    (0, 'To Do'),
-    (1, 'In Progress'),
-    (2, 'Submitted'),
+    ('To Do', 'To Do'),
+    ('In Progress', 'In Progress'),
+    ('Submitted', 'Submitted'),
 ]
 
 
@@ -35,12 +35,12 @@ class Task(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
     description = models.TextField()
-    priority = models.IntegerField(choices=PRIORITY, default=1)
-    status = models.IntegerField(choices=STATUS, default=0)
+    priority = models.CharField(choices=PRIORITY, max_length=6, default="Normal")
+    status = models.CharField(choices=STATUS, max_length=12, default="In Progress")
     approved = models.BooleanField(default=False)
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    due = models.DateTimeField()
+    due = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         ordering = ['status']

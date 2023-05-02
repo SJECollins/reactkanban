@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import styles from '../../styles/Form.module.css'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults'
 
-const TaskCreate = ({ project }) => {
+const TaskCreate = () => {
+    const { projectId } = useParams()
     const [ errors, setErrors ] = useState({})
     const [ taskData, setTaskData ] = useState({
+        project: projectId,
         name: "",
         description: "",
-        due: null,
-        priority: null,
-        status: null,
+        due: "",
+        priority: "",
+        status: "",
     })
     const { name, description, due, priority, status } = taskData
     const history = useHistory()
@@ -26,23 +28,29 @@ const TaskCreate = ({ project }) => {
         event.preventDefault()
         const formData = new FormData()
 
+        formData.append("project", projectId)
         formData.append("name", name)
         formData.append("description", description)
         formData.append("due", due)
         formData.append("priority", priority)
         formData.append("status", status)
 
+        console.log(name)
+        console.log(description)
+        console.log(due)
+        console.log(priority)
+        console.log(status)
+        console.log(projectId)
+
         try {
-            const { data } = await axiosReq.post("/tasks/", {
-                formData,
-                project
-            })
-            history.push(`/project/${project.id}`)
+            await axiosReq.post("/tasks/", formData)
+            history.push(`/task/${projectId}`)
         } catch (err) {
             console.log(err)
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data)
             }
+            console.log("These are the errors: ", errors)
         }
     }
 
@@ -56,8 +64,9 @@ const TaskCreate = ({ project }) => {
                     className={styles.FormInput}
                     placeholder="Task name"
                     type="text"
-                    name="taskname"
-                    value={taskname}
+                    name="name"
+                    id="name"
+                    value={name}
                     onChange={handleChange}
                 />
             </fieldset>
@@ -68,6 +77,7 @@ const TaskCreate = ({ project }) => {
                     placeholder="Description"
                     type="textarea"
                     name="description"
+                    id="description"
                     value={description}
                     onChange={handleChange}
                     rows={4}
@@ -75,12 +85,10 @@ const TaskCreate = ({ project }) => {
             </fieldset>
             <fieldset>
                 <legend>Due: </legend>
-                <input type="date" id="start" name="trip-start"
-       value="2018-07-22"
-       min="2018-01-01" max="2018-12-31"></input>
                 <input
-                    type="date"
+                    type="datetime-local"
                     name="due"
+                    id="due"
                     value={due}
                     min="2023-01-01"
                     onChange={handleChange}
@@ -91,39 +99,41 @@ const TaskCreate = ({ project }) => {
                 <input
                     type="radio"
                     name="priority"
-                    value={0}
+                    value="Low"
+                    checked={priority === "Low"}
                     id="low"
                     onChange={handleChange}
                 />
-                <label htmlFor="low">low</label>
+                <label htmlFor="low">Low</label>
                 <input
                     type="radio"
                     name="priority"
-                    value={1}
+                    value="Normal"
                     id="normal"
-                    checked={priority === 0}
+                    checked={priority === "Normal"}
                     onChange={handleChange}
                 />      
                 <label htmlFor="normal">Normal</label>
                 <input
                     type="radio"
                     name="priority"
-                    value={2}
+                    value="High"
                     id="high"
-                    checked={priority === 1}
+                    checked={priority === "High"}
                     onChange={handleChange}
                 />
                 <label htmlFor="high">High</label>
             </fieldset>
             <fieldset>
                 <legend>Status: </legend>
-                <select value={status} onChange={handleChange}>
-                    <option value={0}>To Do</option>
-                    <option value={1}>In Progress</option>
-                    <option value={2}>Submitted</option>
+                <select name="status" id="status" onChange={handleChange}>
+                    <option>Select status</option>
+                    <option value="To Do">To Do</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Submitted">Submitted</option>
                 </select>
             </fieldset>
-
+            <button type="submit">Add Task</button>
         </form>
     </div> 
   )

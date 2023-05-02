@@ -4,14 +4,12 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project'
 import Task from '../tasks/Task'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const ProjectPage = () => {
     const [ project, setProject ] = useState({ results: [] })
     const [ tasks, setTasks ] = useState({ results: [] })
     const { id } = useParams()
-
-    const currentUser = useCurrentUser()
-    const is_owner = currentUser?.username === owner
 
     useEffect(() => {
         const handleMount = async () => {
@@ -32,6 +30,10 @@ const ProjectPage = () => {
     return (
     <div>
         <Project {...project.results[0]} setProject={setProject}></Project>
+        <hr/>
+        <Link to={`/task/add/${id}`}>
+            Add New Task
+        </Link>
         <hr/>
         {tasks.results.length ? (
             tasks.results.map((task) => (
