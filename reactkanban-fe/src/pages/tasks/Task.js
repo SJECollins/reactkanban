@@ -25,6 +25,7 @@ const Task = (props) => {
     <div>
         <div>
             <h3>{name}</h3>
+            {is_owner && <Link to={`/task/${id}/edit`}>Edit</Link>}
             <p><small>Added: {added}</small></p>
             <p>
                 <strong>Belongs to: </strong>

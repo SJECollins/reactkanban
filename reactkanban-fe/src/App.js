@@ -8,6 +8,7 @@ import ProjectPage from './pages/projects/ProjectPage';
 import TaskPage from './pages/tasks/TaskPage';
 import SignUp from './pages/auth/SignUp';
 import TaskCreate from './pages/tasks/TaskCreate';
+import TaskEdit from './pages/tasks/TaskEdit';
 import ProjectCreate from './pages/projects/ProjectCreate';
 import ProjectEdit from './pages/projects/ProjectEdit';
 
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/project/:id/edit" render={() => <ProjectEdit />} />
           <Route exact path="/project/:id" render={() => <ProjectPage />} />
           <Route exact path="/task/add/:projectId" render={() => <TaskCreate />} />
+          <Route exact path="/task/:id/edit" render={() => <TaskEdit />} />
           <Route exact path="/task/:id" render={() => <TaskPage />} />
         </Switch>
       </div>

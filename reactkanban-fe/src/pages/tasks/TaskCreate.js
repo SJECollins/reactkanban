@@ -14,7 +14,7 @@ const TaskCreate = () => {
         priority: "",
         status: "",
     })
-    const { name, description, due, priority, status } = taskData
+    const { project, name, description, due, priority, status } = taskData
     const history = useHistory()
 
     const handleChange = (event) => {
@@ -28,7 +28,7 @@ const TaskCreate = () => {
         event.preventDefault()
         const formData = new FormData()
 
-        formData.append("project", projectId)
+        formData.append("project", project)
         formData.append("name", name)
         formData.append("description", description)
         formData.append("due", due)
