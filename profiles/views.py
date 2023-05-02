@@ -5,7 +5,7 @@ from .serializers import TeamSerializer, ProfileSerializer
 
 
 class TeamList(generics.ListCreateAPIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
 

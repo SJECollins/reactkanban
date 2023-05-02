@@ -8,6 +8,8 @@ import ProjectPage from './pages/projects/ProjectPage';
 import TaskPage from './pages/tasks/TaskPage';
 import SignUp from './pages/auth/SignUp';
 import TaskCreate from './pages/tasks/TaskCreate';
+import ProjectCreate from './pages/projects/ProjectCreate';
+import ProjectEdit from './pages/projects/ProjectEdit';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -22,6 +24,8 @@ function App() {
           <Route exact path="/signin" render={() => <SignIn />} />
           <Route exact path="/signup" render={() => <SignUp />} />
           <Route exact path="/projects" render={() => <ProjectsPage />} />
+          <Route exact path="/projects/create" render={() => <ProjectCreate />} />
+          <Route exact path="/project/:id/edit" render={() => <ProjectEdit />} />
           <Route exact path="/project/:id" render={() => <ProjectPage />} />
           <Route exact path="/task/add/:projectId" render={() => <TaskCreate />} />
           <Route exact path="/task/:id" render={() => <TaskPage />} />

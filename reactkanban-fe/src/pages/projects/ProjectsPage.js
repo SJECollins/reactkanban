@@ -21,8 +21,11 @@ const ProjectsPage = () => {
         handleMount()
     }, [])
 
-    const loggedIn = (
-        projects.results.length ? (
+    const loggedIn = <div>
+        <Link to="/projects/create">
+            Create New Project
+        </Link>
+        {projects.results.length ? (
             <div>
                 <h1>Current Projects</h1>
                 {projects.results.map((project) => (
@@ -40,7 +43,7 @@ const ProjectsPage = () => {
             <div>
                 There are no projects!
             </div>
-        ))
+        )}</div>
 
     const loggedOut = (
         <h1>You must log in to access projects.</h1>

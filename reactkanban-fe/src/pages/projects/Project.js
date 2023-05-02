@@ -24,6 +24,7 @@ const Project = (props) => {
     <div>
         <div>
             <h2>{name}</h2>
+            {is_owner && <Link to={`/project/${id}/edit`}>Edit</Link>}
             <p><small>{created}</small></p>
             <p>
                 <strong>Lead: </strong>
