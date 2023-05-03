@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'dj_rest_auth.registration',
     'corsheaders',
+    'django_filters',
     'profiles',
     'todo',
 ]
@@ -112,7 +113,7 @@ REST_AUTH_SERIALIZERS = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    'https://8080-sjecollins-reactkanban-sy790vwiwt9.ws-eu96.gitpod.io'
+    'https://8080-sjecollins-reactkanban-sy790vwiwt9.ws-eu96b.gitpod.io'
 ]
 
 CORS_ALLOW_CREDENTIALS = True

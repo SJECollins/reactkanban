@@ -11,6 +11,8 @@ import TaskCreate from './pages/tasks/TaskCreate';
 import TaskEdit from './pages/tasks/TaskEdit';
 import ProjectCreate from './pages/projects/ProjectCreate';
 import ProjectEdit from './pages/projects/ProjectEdit';
+import Home from './pages/home/Home';
+import ProfilePage from './pages/profiles/ProfilePage';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -21,9 +23,10 @@ function App() {
       <NavBar />
       <div>
         <Switch>
-          <Route exact path="/" render={() => <ProjectsPage />} />
+          <Route exact path="/" render={() => <Home />} />
           <Route exact path="/signin" render={() => <SignIn />} />
           <Route exact path="/signup" render={() => <SignUp />} />
+          <Route exact path="/profile/:id" render={() => <ProfilePage />} />
           <Route exact path="/projects" render={() => <ProjectsPage />} />
           <Route exact path="/projects/create" render={() => <ProjectCreate />} />
           <Route exact path="/project/:id/edit" render={() => <ProjectEdit />} />
