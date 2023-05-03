@@ -3,10 +3,18 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    width: min(600px, 80vw);
+    margin: 0 auto;
+}
+
+fieldset {
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .FormInput {
-    margin: 1em;
+    margin: 1em auto;
     padding: 0.5em;
     width: 80%;
     border: 2px solid #d3d3d3;

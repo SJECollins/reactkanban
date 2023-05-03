@@ -70,14 +70,14 @@ const TeamEdit = () => {
             </fieldset>
             <fieldset>
                 <legend>Team Description: </legend>
-                <input
+                <textarea
                     className={styles.FormInput}
                     placeholder="Team description"
-                    type="textarea"
                     name="description"
                     id="description"
                     value={description}
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    rows={4} />
             </fieldset>
             <button type="submit">Submit</button>
         </form>
