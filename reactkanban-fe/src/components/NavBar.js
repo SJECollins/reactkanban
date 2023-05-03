@@ -31,7 +31,7 @@ const NavBar = () => {
         </div>
         <div>
             <ul>
-                <NavLink to="/" className={styles.NavRight}>Profile</NavLink>
+                <NavLink to={`/profile/${currentUser.pk}`} className={styles.NavRight}>Profile</NavLink>
                 <NavLink
                     onClick={handleSignOut}
                     to="/"

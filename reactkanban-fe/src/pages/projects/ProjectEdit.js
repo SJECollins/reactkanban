@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Form.module.css'
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosReq } from '../../api/axiosDefaults'
-
+ 
 const ProjectEdit = () => {
     const [ errors, setErrors ] = useState({})
     const [ teams, setTeams ] = useState({ results: []})
@@ -64,7 +64,7 @@ const ProjectEdit = () => {
 
   return (
     <div>
-        <h3>Create New Project: </h3>
+        <h2>Create New Project: </h2>
         <form onSubmit={handleSubmit} className={styles.FormStyle}>
             <fieldset>
                 <legend>Project Name: </legend>

@@ -58,7 +58,7 @@ const ProjectCreate = () => {
 
   return (
     <div>
-        <h3>Create New Project: </h3>
+        <h2>Create New Project: </h2>
         <form onSubmit={handleSubmit} className={styles.FormStyle}>
             <fieldset>
                 <legend>Project Name: </legend>
