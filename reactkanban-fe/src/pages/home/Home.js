@@ -16,13 +16,10 @@ const Home = () => {
                         <Link to={`/profile/${currentUser.pk}`}>View Your Profile</Link>
                     </li>
                     <li>
-                        <Link>View Your Tasks</Link>
+                        <Link to="/projects">View All Projects</Link>
                     </li>
                     <li>
-                        <Link>View Projects</Link>
-                    </li>
-                    <li>
-                        <Link>View Teams</Link>
+                        <Link to="/teams">View Teams</Link>
                     </li>
                 </ul>
             </div>

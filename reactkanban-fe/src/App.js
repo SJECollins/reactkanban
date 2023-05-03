@@ -13,6 +13,8 @@ import ProjectCreate from './pages/projects/ProjectCreate';
 import ProjectEdit from './pages/projects/ProjectEdit';
 import Home from './pages/home/Home';
 import ProfilePage from './pages/profiles/ProfilePage';
+import TeamsPage from './pages/teams/TeamsPage';
+import TeamPage from './pages/teams/TeamPage';
 
 function App() {
   const currentUser = useCurrentUser()
@@ -34,6 +36,8 @@ function App() {
           <Route exact path="/task/add/:projectId" render={() => <TaskCreate />} />
           <Route exact path="/task/:id/edit" render={() => <TaskEdit />} />
           <Route exact path="/task/:id" render={() => <TaskPage />} />
+          <Route exact path="/teams" render={() => <TeamsPage />} />
+          <Route exact path="/team/:id" render={() => <TeamPage />} />
         </Switch>
       </div>
     </div>

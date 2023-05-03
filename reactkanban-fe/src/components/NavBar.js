@@ -25,7 +25,7 @@ const NavBar = () => {
             <div>
             <ul>
                 <NavLink to="/" className={styles.NavLeft}>Home</NavLink>
-                <NavLink to="/" className={styles.NavLeft}>Teams</NavLink>
+                <NavLink to="/teams" className={styles.NavLeft}>Teams</NavLink>
                 <NavLink to="/projects" className={styles.NavLeft}>Projects</NavLink>
             </ul>
         </div>

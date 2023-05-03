@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults'
-import { useCurrentUser } from '../../contexts/CurrentUserContext'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const TeamsPage = () => {
     const [ teams, setTeams ] = useState({ results: [] })
-    const currentUser = useCurrentUser()
-    const is_lead = currentUser?.profile.get_full_name === lead
 
     useEffect(() => {
         const handleMount = async () => {
@@ -20,13 +18,20 @@ const TeamsPage = () => {
     }, [])
 
   return (
-    teams.results.length ? (
     <div>
-        
+        <h2>Teams: </h2>
+        {teams.results.length ? (
+            teams.results.map((team) => (
+                <Link
+                    key={team.id}
+                    to={`/team/${team.id}`}>
+                        {team.name}
+                    </Link>
+            ))
+        ) : (
+            <p>No teams found.</p>
+        )}
     </div>
-    ) : (
-        <h3>There are no teams.</h3>
-    )
   )
 }
 

@@ -31,7 +31,6 @@ const ProfilePage = () => {
         }
         getData()
     }, [id])
-    console.log(projects)
 
     const openTasks = (
         tasks.results.filter((task) => (
