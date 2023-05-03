@@ -46,6 +46,7 @@ const ProfilePage = () => {
     <div>
         <div>
             <Profile {...profileData} />
+            { is_owner && <Link to={`/profile/${id}/edit`}>Edit Profile</Link>}
         </div>
         <div>
             <h2>Current Projects: </h2>

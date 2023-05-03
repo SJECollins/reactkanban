@@ -19,18 +19,21 @@ const TeamsPage = () => {
 
   return (
     <div>
-        <h2>Teams: </h2>
-        {teams.results.length ? (
-            teams.results.map((team) => (
-                <Link
-                    key={team.id}
-                    to={`/team/${team.id}`}>
-                        {team.name}
-                    </Link>
-            ))
-        ) : (
-            <p>No teams found.</p>
-        )}
+        <Link to="/teams/create">Add New Team</Link>
+        <div>
+            <h2>Teams: </h2>
+            {teams.results.length ? (
+                teams.results.map((team) => (
+                    <Link
+                        key={team.id}
+                        to={`/team/${team.id}`}>
+                            {team.name}
+                        </Link>
+                ))
+            ) : (
+                <p>No teams found.</p>
+            )}
+        </div>
     </div>
   )
 }

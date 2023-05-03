@@ -21,7 +21,6 @@ const Team = (props) => {
       {is_lead && <Link to={`/team/${id}/edit`}>Edit</Link>}
       <p>Team Lead: <Link to={`/profile/${lead}`}>{lead_name}</Link></p>
       <p>{description}</p>
-      <p>Can only the lead edit?</p>
     </div>
   )
 }

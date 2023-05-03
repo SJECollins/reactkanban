@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link, useParams, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
-import { axiosReq } from '../../api/axiosDefaults'
+import { axiosReq, axiosRes } from '../../api/axiosDefaults'
 import Team from './Team'
 
 const TeamPage = () => {
@@ -9,6 +9,7 @@ const TeamPage = () => {
     const [ projects, setProjects ] = useState({ results: [] })
     const [ teamMembers, setTeamMembers ] = useState({ results: [] })
     const { id } = useParams()
+    const history = useHistory()
     const currentUser = useCurrentUser()
     const is_lead = currentUser?.username === teamData?.owner
 
@@ -30,9 +31,23 @@ const TeamPage = () => {
         handleMount()
     }, [id])
 
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/team/${id}`)
+            history.push("/")
+        } catch (err) {
+            console.log (err)
+        }
+    }
+
   return (
     <div>
         <Team {...teamData} />
+        {is_lead &&
+            <div>
+                <Link to={`/team/${id}/edit`}>Edit Team</Link>
+                <button onClick={handleDelete}>Delete Team</button>      
+            </div>}
         <div>
             <h2>Team Members: </h2>
             {teamMembers.results.length ? (

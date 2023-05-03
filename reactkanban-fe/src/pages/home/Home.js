@@ -4,7 +4,6 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 
 const Home = () => {
     const currentUser = useCurrentUser()
-    console.log(currentUser)
 
   return (
     <>

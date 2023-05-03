@@ -1,6 +1,7 @@
 import React from 'react'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import { axiosRes } from '../../api/axiosDefaults'
 
 const Task = (props) => {
     const {
@@ -17,15 +18,29 @@ const Task = (props) => {
         name,
         description,
     } = props
-
+    const history = useHistory()
     const currentUser = useCurrentUser()
     const is_owner = currentUser?.username === owner
+
+    const handleDelete = async () => {
+        try {
+            await axiosRes.delete(`/task/${id}`)
+            history.pushState("/")
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
   return (
     <div>
         <div>
             <h3>{name}</h3>
-            {is_owner && <Link to={`/task/${id}/edit`}>Edit</Link>}
+            {is_owner && 
+            <div>
+                <Link to={`/task/${id}/edit`}>Edit</Link>
+                <button onClick={handleDelete}>Delete</button>               
+            </div>
+}
             <p><small>Added: {added}</small></p>
             <p>
                 <strong>Belongs to: </strong>

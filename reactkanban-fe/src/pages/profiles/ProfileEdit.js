@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/Form.module.css'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min'
-import { axiosReq } from '../../api/axiosDefaults'
+import { axiosReq, axiosRes } from '../../api/axiosDefaults'
 
 const ProfileEdit = () => {
-    cosnt [ errors, setErrors ] = useState({})
+    const [ errors, setErrors ] = useState({})
     const [ teams, setTeams ] = useState({ results: []})
     const [ profileData, setProfileData ] = useState({
         first_name: "",
@@ -42,6 +42,36 @@ const ProfileEdit = () => {
         handleMount()
     }, [currentUser, history, id])
 
+    const handleChange = (event) => {
+        setProfileData({
+            ...profileData,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const formData = new FormData()
+
+        formData.append("first_name", first_name)
+        formData.append("last_name", last_name)
+        formData.append("dob", dob)
+        formData.append("bio", bio)
+        formData.append("team", team)
+        formData.append("role", role)
+
+        try {
+            await axiosReq.post(`/profile/${id}`, formData)
+            history.push(`/profile/${id}`)
+        } catch (err) {
+            console.log(err)
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data)
+            }
+            console.log("These are the errors: ", errors)
+        }
+    }
+
 
   return (
     <div>
@@ -75,7 +105,7 @@ const ProfileEdit = () => {
                     type="date"
                     name="dob"
                     id="dob"
-                    value={deadline}
+                    value={dob}
                     max="2005-01-01"
                     onChange={handleChange}
                 />
