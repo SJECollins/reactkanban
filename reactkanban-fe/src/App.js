@@ -31,7 +31,7 @@ function App() {
           <Route exact path="/" render={() => <Home />} />
           <Route exact path="/signin" render={() => <SignIn />} />
           <Route exact path="/signup" render={() => <SignUp />} />
-          <Route exact path="/profile/:id/edit" render={() => <ProjectEdit />} />
+          <Route exact path="/profile/:id/edit" render={() => <ProfileEdit />} />
           <Route exact path="/profile/:id" render={() => <ProfilePage />} />
           <Route exact path="/projects" render={() => <ProjectsPage />} />
           <Route exact path="/projects/create" render={() => <ProjectCreate />} />

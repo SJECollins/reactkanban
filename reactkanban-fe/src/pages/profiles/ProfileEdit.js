@@ -22,10 +22,10 @@ const ProfileEdit = () => {
 
     useEffect(()=> {
         const handleMount = async () => {
-            if (currentUser?.pk === id) {
+            if (currentUser?.pk.toString() === id) {
                 try {
                     const [{ data: profile }, { data: teams }] = await Promise.all([
-                        axiosReq.get(`/profiles/${id}/`),
+                        axiosReq.get(`/profile/${id}/`),
                         axiosReq.get(`/teams`)
                     ]) 
                     const { first_name, last_name, dob, team, role, bio} = profile
@@ -36,6 +36,7 @@ const ProfileEdit = () => {
                     history.push("/")
                 }
             } else {
+                console.log("Not the user")
                 history.push("/")
             }
         }
@@ -139,8 +140,8 @@ const ProfileEdit = () => {
                     <option value="Team Member">Team Member</option>
                 </select>
             </fieldset>
-        </form>
-        
+            <button type="submit">Edit Profile</button>
+        </form>    
     </div>
   )
 }

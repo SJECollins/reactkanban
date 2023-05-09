@@ -24,8 +24,7 @@ const ProjectEdit = () => {
                     axiosReq.get(`/teams/`)
                 ])
                 const { is_owner, team, deadline, name, description } = project
-
-                is_owner ? setProjectData({ name, team, description, deadline }) : history("/")
+                is_owner ? setProjectData({ name, team, deadline, description }) : history("/")
                 setTeams(teams)
             } catch (err) {
                 console.log(err)
@@ -33,6 +32,7 @@ const ProjectEdit = () => {
         }
         handleMount()
     }, [history, id])
+
 
     const handleChange = (event) => {
         setProjectData({
@@ -64,7 +64,7 @@ const ProjectEdit = () => {
 
   return (
     <div>
-        <h2>Create New Project: </h2>
+        <h2>Edit Project: </h2>
         <form onSubmit={handleSubmit} className={styles.FormStyle}>
             <fieldset>
                 <legend>Project Name: </legend>
@@ -115,11 +115,10 @@ const ProjectEdit = () => {
                     name="deadline"
                     id="deadline"
                     value={deadline}
-                    min="2023-01-01"
                     onChange={handleChange}
                 />
             </fieldset>
-            <button type="submit">Create New Project</button>
+            <button type="submit">Edit Project</button>
         </form>
     </div>
   )
