@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
-import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project'
 import Task from '../tasks/Task'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import styles from '../../styles/Layout.module.css'
 
 const ProjectPage = () => {
     const [ project, setProject ] = useState({ results: [] })
@@ -28,10 +28,12 @@ const ProjectPage = () => {
     }, [id])
 
     return (
-    <div>
+    <div className={styles.Container}>
         <Project {...project.results[0]} setProject={setProject}></Project>
         <hr/>
-        <Link to={`/task/add/${id}`}>
+        <Link
+            className={styles.LinkBtn}
+            to={`/task/add/${id}`}>
             Add New Task
         </Link>
         <hr/>

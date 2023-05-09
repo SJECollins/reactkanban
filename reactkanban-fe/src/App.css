@@ -1,3 +1,7 @@
+* {
+  font-family: sans-serif;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -12,8 +16,10 @@ button {
   border-radius: 4px;
   background-color: #282828;
   color: #efefef;
+  font-size: 1em;
   font-weight: bold;
   padding: 0.5em 1em;
+  margin: 1em;
   transition: all 0.3s ease-in-out;
 }
 
@@ -21,4 +27,8 @@ button:hover, button:active {
   background-color: #efefef;
   color: #282828;
   font-style: italic;
+}
+
+li {
+  list-style-type: none;
 }

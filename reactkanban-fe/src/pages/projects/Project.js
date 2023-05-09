@@ -2,6 +2,7 @@ import React from 'react'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { axiosRes } from '../../api/axiosDefaults'
+import styles from '../../styles/Layout.module.css'
 
 const Project = (props) => {
     const {
@@ -36,10 +37,10 @@ const Project = (props) => {
             <h3>{name}</h3>
             {is_owner &&
             <div>
-                <Link to={`/project/${id}/edit`}>Edit Project</Link>
+                <Link className={styles.LinkBtn} to={`/project/${id}/edit`}>Edit Project</Link>
                 <button onClick={handleDelete}>Delete Project</button>
             </div>}
-            <p><small>{created}</small></p>
+            <p><small>Added on: {created}</small></p>
             <p>
                 <strong>Lead: </strong>
                 <Link to="/">
@@ -55,8 +56,8 @@ const Project = (props) => {
             <p>{description}</p>
             <hr></hr>
             <p><strong>Deadline: </strong>{deadline}</p>
+            <hr/>
         </div>
-        <p>Then we'll have edit and delete links for the owner.</p>
     </div>
   )
 }

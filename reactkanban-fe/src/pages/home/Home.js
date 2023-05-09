@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../../styles/Layout.module.css'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 
@@ -8,17 +9,23 @@ const Home = () => {
   return (
     <>
         {currentUser ? (
-            <div>
+            <div className={styles.Container}>
                 <h1>React Project Manager</h1>
                 <ul>
-                    <li>
-                        <Link to={`/profile/${currentUser.pk}`}>View Your Profile</Link>
+                    <li className={styles.ListLink}>
+                        <Link
+                            to={`/profile/${currentUser.pk}`}
+                            >View Your Profile</Link>
                     </li>
-                    <li>
-                        <Link to="/projects">View All Projects</Link>
+                    <li className={styles.ListLink}>
+                        <Link
+                            to="/projects"
+                            >View All Projects</Link>
                     </li>
-                    <li>
-                        <Link to="/teams">View Teams</Link>
+                    <li className={styles.ListLink}>
+                        <Link
+                            to="/teams"
+                            >View Teams</Link>
                     </li>
                 </ul>
             </div>

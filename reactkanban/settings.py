@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['localhost', 'https://8000-sjecollins-reactkanban-sy790vwiwt9.ws-eu96.gitpod.io']
+ALLOWED_HOSTS = ['localhost', 'https://8000-sjecollins-reactkanban-sy790vwiwt9.ws-eu96b.gitpod.io']
 
 
 # Application definition

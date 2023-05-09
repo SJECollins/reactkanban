@@ -24,14 +24,22 @@ const NavBar = () => {
         {currentUser ? (<>
             <div>
             <ul>
-                <NavLink to="/" className={styles.NavLeft}>Home</NavLink>
-                <NavLink to="/teams" className={styles.NavLeft}>Teams</NavLink>
-                <NavLink to="/projects" className={styles.NavLeft}>Projects</NavLink>
+                <NavLink
+                    to="/"
+                    className={styles.NavLeft}>Home</NavLink>
+                <NavLink
+                    to="/teams"
+                    className={styles.NavLeft}>Teams</NavLink>
+                <NavLink
+                    to="/projects"
+                    className={styles.NavLeft}>Projects</NavLink>
             </ul>
         </div>
         <div>
             <ul>
-                <NavLink to={`/profile/${currentUser.pk}`} className={styles.NavRight}>Profile</NavLink>
+                <NavLink
+                    to={`/profile/${currentUser.pk}`}
+                    className={styles.NavRight}>Profile</NavLink>
                 <NavLink
                     onClick={handleSignOut}
                     to="/"
@@ -42,18 +50,20 @@ const NavBar = () => {
         ) : (<>
         <div>
                 <ul>
-                    <NavLink to="/">Home</NavLink>
+                    <NavLink to="/" className={styles.NavLeft}>Home</NavLink>
                 </ul>
             </div>
             <div>
-                <NavLink
-                    className={styles.NavRight}
-                    to="/signin"
-                    >Sign In</NavLink>
-                <NavLink
-                    className={styles.NavRight}
-                    to="/signup"
-                    >Sign Up</NavLink>
+                <ul>
+                    <NavLink
+                        className={styles.NavRight}
+                        to="/signin"
+                        >Sign In</NavLink>
+                    <NavLink
+                        className={styles.NavRight}
+                        to="/signup"
+                        >Sign Up</NavLink>
+                </ul>
             </div>
         </>)}
     </nav>

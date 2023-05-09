@@ -3,6 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom/cjs/react-router-d
 import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq, axiosRes } from '../../api/axiosDefaults'
 import Team from './Team'
+import styles from '../../styles/Layout.module.css'
 
 const TeamPage = () => {
     const [ teamData, setTeamData ] = useState({ results: [] })
@@ -41,36 +42,49 @@ const TeamPage = () => {
     }
 
   return (
-    <div>
-        <Team {...teamData} />
-        {is_lead &&
-            <div>
-                <Link to={`/team/${id}/edit`}>Edit Team</Link>
-                <button onClick={handleDelete}>Delete Team</button>      
-            </div>}
-        <div>
-            <h2>Team Members: </h2>
-            {teamMembers.results.length ? (
-                teamMembers.results.map((member) => (
-                    <Link
-                        key={member.id}
-                        to={`/profile/${member.id}`}>
-                            {member.full_name}
-                    </Link>
-                ))
-            ) : (
-                <p>No team members found.</p>
-            )}
-        </div>
-        <div>
-            {projects.results.length ? (
-                projects.results.map((project) => (
-                    <Link
-                        key={project.id}
-                        to={`/project/${project.id}`}>
-                            {project.name}
+    <div className={styles.Row}>
+        <div className={styles.Container}>
+            <Team {...teamData} />
+            {is_lead &&
+                <div>
+                    <Link className={styles.LinkBtn} to={`/team/${id}/edit`}>Edit Team</Link>
+                    <button onClick={handleDelete}>Delete Team</button>      
+                </div>}
+            <div className={styles.Col}>
+                <h2>Team Members: </h2>
+                {teamMembers.results.length ? (
+                    teamMembers.results.map((member) => (
+                        <Link
+                            className={styles.LinkBtn}
+                            key={member.id}
+                            to={`/profile/${member.id}`}>
+                                <>
+                                    {member.full_name !== " " ? 
+                                        (member.full_name)
+                                    : 
+                                        (member.owner)
+                                    }
+                                </>
                         </Link>
-                ))
+                    ))
+                ) : (
+                    <p>No team members found.</p>
+                )}
+            </div>
+        </div>
+        <div className={styles.Container}>
+            {projects.results.length ? (
+                <>
+                    <h3>Projects: </h3>
+                    {projects.results.map((project) => (
+                        <Link
+                            className={styles.ListLink}
+                            key={project.id}
+                            to={`/project/${project.id}`}>
+                                {project.name}
+                            </Link>
+                    ))}
+                </>
             ) : (
                 <p>No projects found.</p>
             )}

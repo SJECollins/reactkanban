@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { axiosReq } from '../../api/axiosDefaults'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import styles from '../../styles/Layout.module.css'
 
 const TeamsPage = () => {
     const [ teams, setTeams ] = useState({ results: [] })
@@ -18,13 +19,16 @@ const TeamsPage = () => {
     }, [])
 
   return (
-    <div>
-        <Link to="/teams/create">Add New Team</Link>
+    <div className={styles.Container}>
+        <Link
+            className={styles.LinkBtn}
+            to="/teams/create">Add New Team</Link>
         <div>
             <h2>Teams: </h2>
             {teams.results.length ? (
                 teams.results.map((team) => (
                     <Link
+                        className={styles.ListLink}
                         key={team.id}
                         to={`/team/${team.id}`}>
                             {team.name}

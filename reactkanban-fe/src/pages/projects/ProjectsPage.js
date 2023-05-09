@@ -3,6 +3,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext'
 import { axiosReq } from '../../api/axiosDefaults'
 import Project from './Project'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min'
+import styles from '../../styles/Layout.module.css'
 
 const ProjectsPage = () => {
     const [ projects, setProjects ] = useState({ results: [] })
@@ -21,8 +22,10 @@ const ProjectsPage = () => {
         handleMount()
     }, [])
 
-    const loggedIn = <div>
-        <Link to="/projects/create">
+    const loggedIn = <div className={styles.Container}>
+        <Link
+            className={styles.LinkBtn}
+            to="/projects/create">
             Create New Project
         </Link>
         {projects.results.length ? (
@@ -33,7 +36,9 @@ const ProjectsPage = () => {
                     <Project
                         {...project}
                         setProjects={setProjects} />
-                        <Link to={`/project/${project.id}`}>
+                        <Link
+                            className={styles.LinkBtn}
+                            to={`/project/${project.id}`}>
                             View Project
                         </Link>
                     </div>
